@@ -4,18 +4,18 @@ import router from "./index";
 
 const componentLoader = (componentName) => {
   const componentMap = {
-    "@core/menuMgt/index": () => import("../menuMgt/index.vue"),
-    "@core/userMgt/index": () => import("../userMgt/index.vue"),
-    "@core/roleMgt/index": () => import("../roleMgt/index.vue"),
-    "@core/dictMgt/index": () => import("../dictMgt/index.vue"),
-    "@core/myMsgMgt/index": () => import("../myMsgMgt/index.vue"),
-    "@core/msgTempMgt/index": () => import("../msgTempMgt/index.vue"),
+    "@core/menuMgt/index": () => import("../modules/menuMgt/index.vue"),
+    "@core/userMgt/index": () => import("../modules/userMgt/index.vue"),
+    "@core/roleMgt/index": () => import("../modules/roleMgt/index.vue"),
+    "@core/dictMgt/index": () => import("../modules/dictMgt/index.vue"),
+    "@core/myMsgMgt/index": () => import("../modules/myMsgMgt/index.vue"),
+    "@core/msgTempMgt/index": () => import("../modules/msgTempMgt/index.vue"),
     "@core/online/cgFormMgt/index": () =>
-      import("../online/cgFormMgt/index.vue"),
+      import("../modules/online/cgFormMgt/index.vue"),
     "@core/online/cgReportMgt/index": () =>
-      import("../online/cgReportMgt/index.vue"),
+      import("../modules/online/cgReportMgt/index.vue"),
 
-    "@core/home/index": () => import("../home/index.vue"),
+    "@core/home/index": () => import("../modules/home/index.vue"),
   };
   return componentMap[componentName];
 };

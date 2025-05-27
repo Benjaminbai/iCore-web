@@ -8,7 +8,7 @@ export const routes = [
     path: "/",
     component: BlankLayout,
     children: [
-      { path: "login", component: () => import("../login/index.vue") },
+      { path: "login", component: () => import("../modules/login/index.vue") },
     ],
   },
 ];
