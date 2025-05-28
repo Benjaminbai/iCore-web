@@ -1,6 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import { BlankLayout } from "../libs";
+import { BlankLayout } from "@/libs";
 import { syntheticRoutes } from "./dynamic";
 
 export const routes = [
@@ -8,7 +8,7 @@ export const routes = [
     path: "/",
     component: BlankLayout,
     children: [
-      { path: "login", component: () => import("../modules/login/index.vue") },
+      { path: "login", component: () => import("@/modules/login/index.vue") },
     ],
   },
 ];

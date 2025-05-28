@@ -78,7 +78,7 @@ import {
 } from "ant-design-vue";
 import { inject, ref, reactive, watch } from "vue";
 
-import { Editor } from "../../../libs";
+import { Editor } from "@/libs";
 import {
   sysMessageTemplateAddApi,
   sysDuplicateCheckApi,

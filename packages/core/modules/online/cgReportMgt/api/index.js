@@ -1,4 +1,4 @@
-import Axios from "../../../../axios/Axios";
+import Axios from "@/axios/Axios";
 
 export const cgreportHeadListApi = (params) =>
   Axios({

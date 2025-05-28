@@ -98,9 +98,9 @@ import {
 import { reactive, onMounted, toRaw, ref } from "vue";
 import { useRouter } from "vue-router";
 
-import { LoginBg } from "../../static";
-import { getInputCodeApi, loginApi } from "../../axios/User";
-import { getUserPermissionByToken } from "../../router/dynamic";
+import { LoginBg } from "@/static";
+import { getInputCodeApi, loginApi } from "./api";
+import { getUserPermissionByToken } from "@/router/dynamic";
 
 const [messageApi, contextHolder] = message.useMessage();
 

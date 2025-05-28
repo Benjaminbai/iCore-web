@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import { logo } from "../../static";
+import { logo } from "@/static";
 </script>
 
 <style scoped>

@@ -183,7 +183,7 @@ import {
   cgformEditAllApi,
   cgformAddAllApi,
 } from "../api";
-import { FullModal } from "../../../../libs";
+import { FullModal } from "@/libs";
 
 const [messageApi, contextHolder] = message.useMessage();
 const { open, headInfo } = defineProps(["open", "headInfo"]);

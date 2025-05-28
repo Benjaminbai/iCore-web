@@ -72,7 +72,7 @@ import {
 import { DownOutlined, ExclamationCircleOutlined } from "@ant-design/icons-vue";
 import { provide, reactive, ref, inject, watch, createVNode } from "vue";
 
-import { Table } from "../../../libs";
+import { Table } from "@/libs";
 import {
   sysUserRoleListApi,
   sysUserDeleteUserRoleApi,

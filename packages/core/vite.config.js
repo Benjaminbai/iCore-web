@@ -1,9 +1,20 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import path from "path";
 
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      "@/static": path.resolve(__dirname, "static"),
+      "@/router": path.resolve(__dirname, "router"),
+      "@/modules": path.resolve(__dirname, "modules"),
+      "@/libs": path.resolve(__dirname, "libs"),
+      "@/axios": path.resolve(__dirname, "axios"),
+    },
+  },
   build: {
+    sourcemap: true,
     lib: {
       entry: "./index.js", // 你的核心入口文件
       name: "Core",
@@ -21,6 +32,7 @@ export default defineConfig({
         "vue-router",
         "vuedraggable",
         "@ant-design/icons-vue",
+        // "vue-color",
       ],
       output: {
         assetFileNames: "index.css",
@@ -34,13 +46,8 @@ export default defineConfig({
           "vue-router": "vue-router",
           vuedraggable: "vuedraggable",
           "@ant-design/icons-vue": "@ant-design/icons-vue",
+          // "vue-color": "vue-color",
         },
-      },
-    },
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        reassign_const: false, // 关键！
       },
     },
   },

@@ -8,11 +8,13 @@
       <LayoutHeader class="layout-header">
         <UserInfo />
       </LayoutHeader>
-      <Layout style="padding: 0 24px">
+      <Layout>
         <LayoutContent class="layout-content">
           <RouterView />
         </LayoutContent>
-        <LayoutFooter class="layout-footer"></LayoutFooter>
+        <LayoutFooter class="layout-footer">
+          Copyright © 2025 - 2026 IQVIA
+        </LayoutFooter>
       </Layout>
     </Layout>
   </Layout>
@@ -27,7 +29,7 @@ import {
 } from "ant-design-vue";
 import { ref } from "vue";
 import { RouterView } from "vue-router";
-import { Logo, Menu, UserInfo } from "../../libs";
+import { Logo, Menu, UserInfo } from "@/libs";
 
 const collapsed = ref(false);
 </script>
@@ -48,9 +50,8 @@ const collapsed = ref(false);
   }
 
   .layout-content {
-    padding: 0 50px;
+    padding: 20px;
     height: 100%;
-    padding-top: 10px;
     overflow: auto;
 
     .layout-bread {
@@ -60,7 +61,7 @@ const collapsed = ref(false);
   }
 
   .layout-footer {
-    height: 100px;
+    text-align: center;
   }
 
   :deep(.ant-layout-sider-trigger) {

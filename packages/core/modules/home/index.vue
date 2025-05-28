@@ -1,3 +1,7 @@
-<template>首页</template>
+<template>
+  <TypographyTitle :level="4">Welcome to iCore</TypographyTitle>
+</template>
 
-<script setup></script>
+<script setup>
+import { TypographyTitle } from "ant-design-vue";
+</script>

@@ -1,4 +1,4 @@
-import Axios from "./Axios";
+import Axios from "@/axios/Axios";
 
 export const logoutApi = () => Axios.get("/sys/logout");
 

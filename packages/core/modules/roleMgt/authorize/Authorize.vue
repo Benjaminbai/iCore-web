@@ -11,7 +11,6 @@
       v-model:checkedKeys="checkedKeys"
       :defaultExpandAll="true"
       checkable
-      checkStrictly
       :tree-data="treeData"
       :fieldNames="{ title: 'slotTitle' }"
     >

@@ -40,6 +40,9 @@ importers:
       vue-codemirror:
         specifier: ^6.1.1
         version: 6.1.1(codemirror@6.0.1)(vue@3.5.14)
+      vue-color:
+        specifier: ^3.0.2
+        version: 3.0.2(vue@3.5.14)
       vue-router:
         specifier: '4'
         version: 4.5.1(vue@3.5.14)
@@ -83,6 +86,9 @@ importers:
       vue-codemirror:
         specifier: ^6.1.1
         version: 6.1.1(codemirror@6.0.1)(vue@3.5.14)
+      vue-color:
+        specifier: ^3.0.2
+        version: 3.0.2(vue@3.5.14)
       vue-router:
         specifier: '4'
         version: 4.5.1(vue@3.5.14)
@@ -656,6 +662,9 @@ packages:
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
+  material-colors@1.2.6:
+    resolution: {integrity: sha512-6qE4B9deFBIa9YSpOc9O0Sgc43zTeVYbgDT5veRKSlB2+ZuHNoVVxA1L/ckMUayV9Ay9y7Z/SZCLcGteW9i7bg==}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -727,6 +736,9 @@ packages:
   tiny-emitter@2.1.0:
     resolution: {integrity: sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==}
 
+  tinycolor2@1.6.0:
+    resolution: {integrity: sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw==}
+
   tinyglobby@0.2.14:
     resolution: {integrity: sha512-tX5e7OM1HnYr2+a2C/4V0htOcSQcoSTH9KgJnVvNm5zm/cyEWKJ7j7YutsH9CxMdtOkkLFy2AHrMci9IM8IPZQ==}
     engines: {node: '>=12.0.0'}
@@ -782,6 +794,11 @@ packages:
     peerDependencies:
       codemirror: 6.x
       vue: 3.x
+
+  vue-color@3.0.2:
+    resolution: {integrity: sha512-tfrEdr7b5SwjwW3g3WiqUsHw/XpfXY4TS66m9izD0RVM6/KYCkSs7yFm9qJiCitCTpCWFeXrj/4Wx7nNnWMdVA==}
+    peerDependencies:
+      vue: ^3.5.13
 
   vue-router@4.5.1:
     resolution: {integrity: sha512-ogAF3P97NPm8fJsE4by9dwSYtDwXIY1nFY9T6DyQnGHd1E2Da94w9JIolpe42LJGIl0DwOHBi8TcRPlPGwbTtw==}
@@ -1319,6 +1336,8 @@ snapshots:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  material-colors@1.2.6: {}
+
   math-intrinsics@1.1.0: {}
 
   mime-db@1.52.0: {}
@@ -1391,6 +1410,8 @@ snapshots:
 
   tiny-emitter@2.1.0: {}
 
+  tinycolor2@1.6.0: {}
+
   tinyglobby@0.2.14:
     dependencies:
       fdir: 6.4.4(picomatch@4.0.2)
@@ -1418,6 +1439,12 @@ snapshots:
       '@codemirror/state': 6.5.2
       '@codemirror/view': 6.36.8
       codemirror: 6.0.1
+      vue: 3.5.14
+
+  vue-color@3.0.2(vue@3.5.14):
+    dependencies:
+      material-colors: 1.2.6
+      tinycolor2: 1.6.0
       vue: 3.5.14
 
   vue-router@4.5.1(vue@3.5.14):

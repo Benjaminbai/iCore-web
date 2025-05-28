@@ -6,6 +6,8 @@ import Logo from "./logo/index.vue";
 import Menu from "./menu/index.vue";
 import Table from "./table/index.vue";
 import UserInfo from "./userInfo/index.vue";
+import ColorPicker from "./colorPicker/index.vue";
+import UploadImg from "./upload/UploadImg.vue";
 
 export {
   Editor,
@@ -16,4 +18,6 @@ export {
   Menu,
   Table,
   UserInfo,
+  ColorPicker,
+  UploadImg,
 };

@@ -139,7 +139,7 @@ import {
 } from "ant-design-vue";
 import { Codemirror } from "vue-codemirror";
 
-import { FullModal } from "../../../../libs";
+import { FullModal } from "@/libs";
 import ReportConfig from "./ReportConfig.vue";
 import ReportParams from "./ReportParams.vue";
 import {
