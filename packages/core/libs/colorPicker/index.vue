@@ -4,7 +4,14 @@
       v-model:value="_color"
       @input="$emit('update:modelValue', $event.target.value)"
       @focus="showPicker = true"
-    />
+    >
+      <template #suffix>
+        <SkinFilled
+          v-if="_color"
+          :style="{ fontSize: '20px', color: _color }"
+        />
+      </template>
+    </Input>
     <ChromePicker
       class="color-picker"
       v-show="showPicker"
@@ -17,6 +24,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from "vue";
 import { Input } from "ant-design-vue";
+import { SkinFilled } from "@ant-design/icons-vue";
 import { ChromePicker } from "vue-color";
 import "vue-color/style.css";
 

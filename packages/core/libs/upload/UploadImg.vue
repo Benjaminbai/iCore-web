@@ -3,24 +3,44 @@
     v-model:file-list="fileList"
     list-type="picture-card"
     class="avatar-uploader"
-    :show-upload-list="false"
-    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+    :headers="headers"
+    :action="uploadUrl"
     :before-upload="beforeUpload"
     @change="handleChange"
+    @preview="handlePreview"
+    :max-count="1"
   >
-    <img v-if="imageUrl" :src="imageUrl" alt="avatar" />
-    <div v-else>
+    <div>
       <LoadingOutlined v-if="loading" />
       <PlusOutlined v-else />
       <div class="ant-upload-text">Upload</div>
     </div>
   </Upload>
+
+  <Modal
+    :open="previewVisible"
+    :title="previewTitle"
+    :footer="null"
+    @cancel="previewVisible = false"
+  >
+    <img :src="previewImage" />
+  </Modal>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { Upload, message } from "ant-design-vue";
+import { Upload, message, Modal } from "ant-design-vue";
 import { PlusOutlined, LoadingOutlined } from "@ant-design/icons-vue";
+import Axios from "@/axios/Axios";
+
+const urlPrefix = Axios.defaults.baseURL;
+const uploadUrl = urlPrefix + "/sys/common/upload";
+const downloadUrl = urlPrefix + "/sys/common/static/";
+const token = JSON.parse(localStorage.getItem("LOCALINFO") || "{}")?.token;
+const headers = { "X-Access-Token": token };
+
+const { modelValue } = defineProps(["modelValue"]);
+const $emit = defineEmits(["update:modelValue"]);
 
 function getBase64(img, callback) {
   const reader = new FileReader();
@@ -29,7 +49,10 @@ function getBase64(img, callback) {
 }
 const fileList = ref([]);
 const loading = ref(false);
-const imageUrl = ref("");
+const previewVisible = ref(false);
+const previewImage = ref("");
+const previewTitle = ref("");
+
 const handleChange = (info) => {
   if (info.file.status === "uploading") {
     loading.value = true;
@@ -37,8 +60,15 @@ const handleChange = (info) => {
   }
   if (info.file.status === "done") {
     getBase64(info.file.originFileObj, (base64Url) => {
-      imageUrl.value = base64Url;
+      previewImage.value = base64Url;
+      fileList.value = fileList.value.map((file) => {
+        if (file.response) {
+          file.url = downloadUrl + file.response.message;
+        }
+        return file;
+      });
       loading.value = false;
+      $emit("update:modelValue", fileList.value[0].url);
     });
   }
   if (info.file.status === "error") {
@@ -57,6 +87,26 @@ const beforeUpload = (file) => {
   }
   return isJpgOrPng && isLt2M;
 };
+
+const handlePreview = (file) => {
+  if (!file.url && !file.preview) {
+    file.preview = getBase64(file.originFileObj);
+  }
+  previewImage.value = file.url || file.preview;
+  previewVisible.value = true;
+  previewTitle.value =
+    file.name || file.url.substring(file.url.lastIndexOf("/") + 1);
+};
 </script>
 
-<style scoped></style>
+<style scoped>
+:deep(.ant-upload) {
+  overflow: hidden !important;
+}
+.avatar-uploader {
+  .inner-img {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
