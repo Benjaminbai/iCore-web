@@ -1,12 +1,15 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import { BlankLayout } from "@/libs";
+import { Provider } from "@/libs";
 import { syntheticRoutes } from "./dynamic";
 
 export const routes = [
   {
     path: "/",
-    component: BlankLayout,
+    component: Provider,
+    meta: {
+      layout: "blank",
+    },
     children: [
       { path: "login", component: () => import("@/modules/login/index.vue") },
     ],

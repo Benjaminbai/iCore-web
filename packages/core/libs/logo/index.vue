@@ -1,11 +1,13 @@
 <template>
   <div class="logo-wrapper">
-    <img :src="logo" alt="logo" />
+    <img :src="resource || logo" alt="logo" />
   </div>
 </template>
 
 <script setup>
 import { logo } from "@/static";
+
+const { resource } = defineProps(["resource"]);
 </script>
 
 <style scoped>
@@ -16,5 +18,10 @@ import { logo } from "@/static";
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

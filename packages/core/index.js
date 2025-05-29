@@ -1,8 +1,7 @@
 export {
   Editor,
   FullModal,
-  BlankLayout,
-  HscfLayout,
+  Provider,
   Logo,
   Menu,
   Table,

@@ -1,11 +1,7 @@
 <template>
-  <RouterView v-if="route.path === '/login'" />
-  <HscfLayout v-else />
+  <RouterView />
 </template>
 
 <script setup>
-import { RouterView, useRoute } from "vue-router";
-import { HscfLayout } from "@icore/core";
-
-const route = useRoute();
+import { RouterView } from "vue-router";
 </script>

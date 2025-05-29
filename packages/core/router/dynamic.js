@@ -1,4 +1,4 @@
-import { BlankLayout } from "@/libs";
+import { Provider } from "@/libs";
 import { getUserPermissionByTokenApi } from "@/modules/login/api";
 import router from "./index";
 
@@ -24,7 +24,7 @@ const componentLoader = (componentName) => {
 const recursionRoutes = (_menus) => {
   _menus.forEach((menu) => {
     if (menu.children) {
-      menu.component = BlankLayout;
+      menu.component = Provider;
       recursionRoutes(menu.children);
     } else {
       menu.component = componentLoader(menu.component);
@@ -39,6 +39,18 @@ export const getUserPermissionByToken = async () => {
       const menus = res.result.menu.filter(
         (menu) => menu.path !== "/dashboard/analysis"
       );
+      // 处理layout
+      menus.forEach((menu) => {
+        if (!menu.children) {
+          menu.children = [
+            {
+              ...menu,
+            },
+          ];
+          menu.name = "_" + menu.name;
+          menu.component = Provider;
+        }
+      });
       localStorage.setItem("MENUS", JSON.stringify(menus));
       syntheticRoutes();
     }
@@ -52,7 +64,6 @@ export const syntheticRoutes = async () => {
   ) {
     let menus = JSON.parse(localStorage.getItem("MENUS") || "[]");
     recursionRoutes(menus);
-    genarateMenus(menus);
     menus.forEach((menu) => {
       router.addRoute(menu);
     });
@@ -70,9 +81,4 @@ const recursionMenu = (_menus) => {
     menu.title = menu.meta.title;
     delete menu.component;
   });
-};
-
-const genarateMenus = (dynamicRoutes) => {
-  const menus = JSON.parse(JSON.stringify(dynamicRoutes));
-  recursionMenu(menus);
 };

@@ -4,7 +4,7 @@
       v-model:openKeys="state.openKeys"
       v-model:selectedKeys="state.selectedKeys"
       mode="inline"
-      theme="dark"
+      :theme="theme"
       :inline-collapsed="state.collapsed"
       :items="menus"
       @select="menuSelect"
@@ -18,6 +18,8 @@ import { reactive, watch, ref } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
+
+const { theme } = defineProps(["theme"]);
 
 let state = reactive({
   selectedKeys: [],
@@ -58,6 +60,9 @@ watch(
 </script>
 
 <style scoped>
+:deep(.ant-menu-light) {
+  /* background: transparent; */
+}
 .menu-wrapper {
   padding: 10px;
 }
