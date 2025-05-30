@@ -25,12 +25,12 @@ const theme = ref({
   theme_dark_light_algorithm: "defaultAlgorithm",
   theme_compact_algorithm: 0,
   theme_header_gradient: "#4ca7e1",
+  theme_radius: 6,
 
   // navi
   navi_breadcrumb_show: "true",
   navi_breadcrumb_position: "left",
 
   // components
-  components_btn_radius: "",
 });
 export default theme;

@@ -1,24 +1,12 @@
 <template>
-  <ConfigProvider
-    :theme="{
-      algorithm: [
-        antDesignTheme[theme.theme_dark_light_algorithm],
-        theme.theme_compact_algorithm
-          ? antDesignTheme.compactAlgorithm
-          : antDesignTheme[theme.theme_dark_light_algorithm],
-      ],
-      token: {
-        colorPrimary: theme.theme_color,
-      },
-    }"
-  >
+  <ConfigProvider :theme="globalConfig">
     <BlankLayout v-if="route.meta.layout === 'blank'" />
     <component v-else :is="layoutMap[theme.theme_layout]"></component>
   </ConfigProvider>
 </template>
 
 <script setup>
-import { provide } from "vue";
+import { computed, provide } from "vue";
 import { useRoute } from "vue-router";
 import { ConfigProvider, theme as antDesignTheme } from "ant-design-vue";
 import theme from "@/modules/theme/state";
@@ -29,7 +17,22 @@ provide("theme", theme);
 
 const route = useRoute();
 
-const { token } = antDesignTheme.useToken();
+// const { token } = antDesignTheme.useToken();
+
+const globalConfig = computed(() => {
+  return {
+    algorithm: [
+      antDesignTheme[theme.value.theme_dark_light_algorithm],
+      theme.value.theme_compact_algorithm
+        ? antDesignTheme.compactAlgorithm
+        : antDesignTheme[theme.value.theme_dark_light_algorithm],
+    ],
+    token: {
+      colorPrimary: theme.value.theme_color,
+      borderRadius: theme.value.theme_radius,
+    },
+  };
+});
 
 const layoutMap = {
   blank: BlankLayout,

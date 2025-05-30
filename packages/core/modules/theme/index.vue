@@ -92,6 +92,14 @@
             <FormItem label="渐变色">
               <ColorPicker v-model="theme.theme_header_gradient" />
             </FormItem>
+            <FormItem label="圆角">
+              <Slider
+                v-model:value="theme.theme_radius"
+                :min="0"
+                :max="20"
+                :step="1"
+              />
+            </FormItem>
           </Form>
         </div>
         <!-- <div class="theme-box">
@@ -112,11 +120,7 @@
 
         <div class="theme-box">
           <Divider orientation="left">组件设置</Divider>
-          <Form :model="theme" v-bind="layout">
-            <FormItem label="按钮圆角">
-              <Input v-model:value="theme.components_btn_radius" />
-            </FormItem>
-          </Form>
+          <Form :model="theme" v-bind="layout"> </Form>
         </div>
       </Col>
     </Row>
