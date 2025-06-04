@@ -1,7 +1,7 @@
 <template>
   <Card title="主题设计" :bordered="false">
     <template #extra>
-      <Button type="primary">保存</Button>
+      <Button type="primary" @click="saveTheme">保存</Button>
     </template>
     <Row>
       <Col :span="11">
@@ -128,7 +128,7 @@
 </template>
 
 <script setup>
-import { inject } from "vue";
+import { inject, onMounted } from "vue";
 import {
   Card,
   Form,
@@ -142,14 +142,36 @@ import {
   Slider,
   Button,
   Switch,
+  message,
 } from "ant-design-vue";
 import { ColorPicker, UploadImg } from "@/libs";
+
+import { sysPageEditApi, sysPageQueryApi } from "./api";
 
 const theme = inject("theme");
 
 const layout = {
   labelCol: { span: 6 },
   wrapperCol: { span: 16 },
+};
+
+onMounted(() => {
+  sysPageQuery();
+});
+
+const sysPageQuery = async () => {
+  const { result } = await sysPageQueryApi();
+  if (result) {
+    theme.value = JSON.parse(result.properties);
+  }
+};
+
+const saveTheme = async () => {
+  const params = {
+    properties: JSON.stringify(theme.value),
+  };
+  const { success, message: msg } = await sysPageEditApi(params);
+  success && message.success(msg);
 };
 </script>
 

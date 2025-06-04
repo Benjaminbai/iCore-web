@@ -61,9 +61,10 @@ watch(
 
 <style scoped>
 :deep(.ant-menu-light) {
-  /* background: transparent; */
+  background: transparent;
+  border-inline-end: unset !important;
 }
 .menu-wrapper {
-  padding: 10px;
+  padding: 0 10px 10px 10px;
 }
 </style>

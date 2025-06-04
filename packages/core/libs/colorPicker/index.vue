@@ -22,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, watchEffect } from "vue";
 import { Input } from "ant-design-vue";
 import { SkinFilled } from "@ant-design/icons-vue";
 import { ChromePicker } from "vue-color";
@@ -32,6 +32,10 @@ const { modelValue } = defineProps(["modelValue"]);
 const _color = ref(modelValue);
 const showPicker = ref(false);
 const pickerContainer = ref(null);
+
+watchEffect(() => {
+  _color.value = modelValue;
+});
 
 const handleClickOutside = (event) => {
   if (pickerContainer.value && !pickerContainer.value?.contains(event.target)) {
