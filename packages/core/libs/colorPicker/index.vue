@@ -15,8 +15,10 @@
     <ChromePicker
       class="color-picker"
       v-show="showPicker"
-      v-model="_color"
-      @update:modelValue="$emit('update:modelValue', _color)"
+      v-model:tinyColor="tinyColor"
+      @update:tinyColor="
+        $emit('update:modelValue', (_color = tinyColor.toHex8String()))
+      "
     />
   </div>
 </template>
@@ -25,16 +27,18 @@
 import { ref, onMounted, onUnmounted, watchEffect } from "vue";
 import { Input } from "ant-design-vue";
 import { SkinFilled } from "@ant-design/icons-vue";
-import { ChromePicker } from "vue-color";
+import { ChromePicker, tinycolor } from "vue-color";
 import "vue-color/style.css";
 
 const { modelValue } = defineProps(["modelValue"]);
 const _color = ref(modelValue);
+const tinyColor = ref(tinycolor(modelValue));
 const showPicker = ref(false);
 const pickerContainer = ref(null);
 
 watchEffect(() => {
   _color.value = modelValue;
+  tinyColor.value = tinycolor(modelValue);
 });
 
 const handleClickOutside = (event) => {
