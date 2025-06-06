@@ -7,7 +7,6 @@ const theme = ref({
   login_sub_title_color: "#666",
   login_box_position: "left",
   login_box_bg_color: "#fff",
-  login_box_opacity: 1,
   login_bg_image: "",
 
   // brand

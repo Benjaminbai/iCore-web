@@ -6,7 +6,14 @@
     <Row>
       <Col :span="11">
         <div class="theme-box">
-          <Divider orientation="left">登录页设置</Divider>
+          <Divider orientation="left">
+            登录页设置
+            <Button
+              type="link"
+              :icon="h(EyeOutlined)"
+              @click="loginReview = true"
+            />
+          </Divider>
           <Form :model="theme" v-bind="layout">
             <FormItem label="主标题">
               <Input v-model:value="theme.login_title" />
@@ -28,14 +35,6 @@
             </FormItem>
             <FormItem label="登录框背景色">
               <ColorPicker v-model="theme.login_box_bg_color" />
-            </FormItem>
-            <FormItem label="登录框背透明度">
-              <Slider
-                v-model:value="theme.login_box_opacity"
-                :min="0"
-                :max="1"
-                :step="0.01"
-              />
             </FormItem>
             <FormItem label="登录页背景图">
               <UploadImg v-model="theme.login_bg_image" />
@@ -125,10 +124,20 @@
       </Col>
     </Row>
   </Card>
+
+  <Modal
+    v-model:open="loginReview"
+    title="登录页预览"
+    width="100%"
+    wrap-class-name="full-modal"
+    :footer="null"
+  >
+    <Login disabled />
+  </Modal>
 </template>
 
 <script setup>
-import { inject, onMounted } from "vue";
+import { inject, h, ref } from "vue";
 import {
   Card,
   Form,
@@ -143,10 +152,13 @@ import {
   Button,
   Switch,
   message,
+  Modal,
 } from "ant-design-vue";
+import { EyeOutlined } from "@ant-design/icons-vue";
 import { ColorPicker, UploadImg } from "@/libs";
+import Login from "@/modules/login/index.vue";
 
-import { sysPageEditApi, sysPageQueryApi } from "./api";
+import { sysPageEditApi } from "./api";
 
 const theme = inject("theme");
 
@@ -155,16 +167,7 @@ const layout = {
   wrapperCol: { span: 16 },
 };
 
-onMounted(() => {
-  sysPageQuery();
-});
-
-const sysPageQuery = async () => {
-  const { result } = await sysPageQueryApi();
-  if (result) {
-    theme.value = JSON.parse(result.properties);
-  }
-};
+const loginReview = ref(false);
 
 const saveTheme = async () => {
   const params = {
@@ -172,6 +175,7 @@ const saveTheme = async () => {
   };
   const { success, message: msg } = await sysPageEditApi(params);
   success && message.success(msg);
+  sessionStorage.setItem("theme", JSON.stringify(theme.value));
 };
 </script>
 

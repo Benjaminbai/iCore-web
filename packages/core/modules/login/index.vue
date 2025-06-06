@@ -1,83 +1,104 @@
 <template>
   <context-holder />
   <div class="login-wrapper">
-    <Row class="login-container">
-      <Col :span="14" class="login-form">
-        <div style="width: 60%">
-          <h2>Login to Space</h2>
-          <Form ref="formRef" :model="formState" name="basic" :rules="rules">
-            <FormItem name="username">
-              <Input
-                v-model:value="formState.username"
-                :bordered="false"
-                class="login-input"
-                size="large"
-              />
-            </FormItem>
-
-            <FormItem name="password">
-              <InputPassword
-                v-model:value="formState.password"
-                :bordered="false"
-                class="login-input"
-                size="large"
-              />
-            </FormItem>
-            <FormItem name="captcha">
-              <Row :gutter="20">
-                <Col :span="14">
-                  <Input
-                    v-model:value="formState.captcha"
-                    :bordered="false"
-                    class="login-input"
-                    size="large"
-                  />
-                </Col>
-                <Col :span="10">
-                  <img
-                    class="check-code"
-                    :src="randCodeData.randCodeImage"
-                    @click="handleChangeCheckCode"
-                  />
-                </Col>
-              </Row>
-              <Space> </Space>
-            </FormItem>
-
-            <FormItem name="remember">
-              <Flex justify="space-between" align="center">
-                <Checkbox v-model:checked="formState.remember"
-                  >Remember me</Checkbox
-                >
-                <Button type="link" style="padding-right: 0"
-                  >Forgot password?</Button
-                >
-              </Flex>
-            </FormItem>
-
-            <FormItem :wrapper-col="{ offset: 0, span: 12 }">
-              <Button
-                type="primary"
-                html-type="submit"
-                block
-                shape="round"
-                @click="onSubmit"
-                :loading="loading"
-                >Submit</Button
-              >
-            </FormItem>
-          </Form>
-        </div>
-      </Col>
-      <Col
-        :span="10"
-        class="login-image"
+    <Card class="login-container">
+      <Row
         :style="{
-          background: `url(${LoginBg}) no-repeat`,
+          background: `url(${theme.login_bg_image || LoginBg}) no-repeat`,
           backgroundSize: 'cover',
+          height: '100%',
         }"
-      ></Col>
-    </Row>
+      >
+        <Col
+          :span="14"
+          class="login-form"
+          :push="theme.login_box_position === 'left' ? 0 : 10"
+          :style="{ background: theme.login_box_bg_color }"
+        >
+          <div style="width: 60%">
+            <h2 :style="{ color: theme.login_title_color }">
+              {{ theme.login_title }}
+            </h2>
+            <p :style="{ color: theme.login_sub_title_color }">
+              {{ theme.login_sub_title }}
+            </p>
+            <Form
+              ref="formRef"
+              :model="formState"
+              name="basic"
+              :rules="rules"
+              :disabled="disabled"
+            >
+              <FormItem name="username">
+                <Input
+                  v-model:value="formState.username"
+                  :bordered="false"
+                  class="login-input"
+                  size="large"
+                />
+              </FormItem>
+
+              <FormItem name="password">
+                <InputPassword
+                  v-model:value="formState.password"
+                  :bordered="false"
+                  class="login-input"
+                  size="large"
+                />
+              </FormItem>
+              <FormItem name="captcha">
+                <Row :gutter="20">
+                  <Col :span="14">
+                    <Input
+                      v-model:value="formState.captcha"
+                      :bordered="false"
+                      class="login-input"
+                      size="large"
+                    />
+                  </Col>
+                  <Col :span="10">
+                    <img
+                      class="check-code"
+                      :src="randCodeData.randCodeImage"
+                      @click="handleChangeCheckCode"
+                    />
+                  </Col>
+                </Row>
+                <Space> </Space>
+              </FormItem>
+
+              <FormItem name="remember">
+                <Flex justify="space-between" align="center">
+                  <Checkbox v-model:checked="formState.remember"
+                    >Remember me</Checkbox
+                  >
+                  <Button type="link" style="padding-right: 0"
+                    >Forgot password?</Button
+                  >
+                </Flex>
+              </FormItem>
+
+              <FormItem :wrapper-col="{ offset: 0, span: 12 }">
+                <Button
+                  type="primary"
+                  html-type="submit"
+                  block
+                  shape="round"
+                  @click="onSubmit"
+                  :loading="loading"
+                  >Submit</Button
+                >
+              </FormItem>
+            </Form>
+          </div>
+        </Col>
+        <Col
+          :span="10"
+          :pull="theme.login_box_position === 'left' ? 0 : 14"
+          class="login-image"
+        />
+      </Row>
+    </Card>
   </div>
 </template>
 
@@ -94,15 +115,20 @@ import {
   Flex,
   Space,
   message,
+  Card,
 } from "ant-design-vue";
-import { reactive, onMounted, toRaw, ref } from "vue";
+import { reactive, onMounted, toRaw, ref, inject } from "vue";
 import { useRouter } from "vue-router";
 
 import { LoginBg } from "@/static";
 import { getInputCodeApi, loginApi } from "./api";
 import { getUserPermissionByToken } from "@/router/dynamic";
 
+const theme = inject("theme");
+
 const [messageApi, contextHolder] = message.useMessage();
+
+const { disabled } = defineProps(["disabled"]);
 
 const rules = {
   username: [
@@ -185,20 +211,19 @@ const onSubmit = () => {
 
 <style scoped>
 .login-wrapper {
-  height: 100vh;
+  height: 100%;
   background-color: #e0e5ec;
   display: flex;
   justify-content: center;
   align-items: center;
+  :deep(.ant-card-body) {
+    padding: 0;
+    height: 100%;
+  }
   .login-container {
     width: 65%;
-    height: 600px;
-    background-color: #fff;
-    border-radius: 10px;
+    height: 70%;
     overflow: hidden;
-    h2 {
-      margin-bottom: 50px;
-    }
 
     .login-form {
       display: flex;
@@ -208,10 +233,6 @@ const onSubmit = () => {
       .login-input {
         background-color: #f7f8fb;
       }
-    }
-
-    .login-image {
-      background-color: #eee;
     }
   }
 }

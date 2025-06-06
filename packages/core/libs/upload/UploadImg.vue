@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 import { Upload, message, Modal } from "ant-design-vue";
 import { PlusOutlined, LoadingOutlined } from "@ant-design/icons-vue";
 import Axios from "@/axios/Axios";
@@ -53,12 +53,20 @@ const previewVisible = ref(false);
 const previewImage = ref("");
 const previewTitle = ref("");
 
+watchEffect(() => {
+  modelValue && (fileList.value = [{ url: modelValue }]);
+});
+
 const handleChange = (info) => {
   if (info.file.status === "uploading") {
     loading.value = true;
     return;
   }
+  
   if (info.file.status === "done") {
+    if (!info.file.response.success) {
+      return message.error("upload error");
+    }
     getBase64(info.file.originFileObj, (base64Url) => {
       previewImage.value = base64Url;
       fileList.value = fileList.value.map((file) => {
@@ -77,15 +85,11 @@ const handleChange = (info) => {
   }
 };
 const beforeUpload = (file) => {
-  const isJpgOrPng = file.type === "image/jpeg" || file.type === "image/png";
-  if (!isJpgOrPng) {
-    message.error("You can only upload JPG file!");
-  }
   const isLt2M = file.size / 1024 / 1024 < 2;
   if (!isLt2M) {
     message.error("Image must smaller than 2MB!");
   }
-  return isJpgOrPng && isLt2M;
+  return isLt2M;
 };
 
 const handlePreview = (file) => {
