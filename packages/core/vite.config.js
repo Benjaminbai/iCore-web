@@ -11,6 +11,7 @@ export default defineConfig({
       "@/modules": path.resolve(__dirname, "modules"),
       "@/libs": path.resolve(__dirname, "libs"),
       "@/axios": path.resolve(__dirname, "axios"),
+      "@/i18n": path.resolve(__dirname, "i18n"),
     },
   },
   build: {
@@ -32,7 +33,8 @@ export default defineConfig({
         "vue-router",
         "vuedraggable",
         "@ant-design/icons-vue",
-        // "vue-color",
+        "vue-color",
+        "vue-i18n",
       ],
       output: {
         assetFileNames: "index.css",
@@ -46,7 +48,8 @@ export default defineConfig({
           "vue-router": "vue-router",
           vuedraggable: "vuedraggable",
           "@ant-design/icons-vue": "@ant-design/icons-vue",
-          // "vue-color": "vue-color",
+          "vue-color": "vue-color",
+          "vue-i18n": "vue-i18n",
         },
       },
     },

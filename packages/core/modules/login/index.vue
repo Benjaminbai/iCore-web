@@ -69,12 +69,10 @@
 
               <FormItem name="remember">
                 <Flex justify="space-between" align="center">
-                  <Checkbox v-model:checked="formState.remember"
-                    >Remember me</Checkbox
-                  >
-                  <Button type="link" style="padding-right: 0"
-                    >Forgot password?</Button
-                  >
+                  <LangPicker />
+                  <Button type="link" style="padding-right: 0">
+                    Forgot password?
+                  </Button>
                 </Flex>
               </FormItem>
 
@@ -86,8 +84,9 @@
                   shape="round"
                   @click="onSubmit"
                   :loading="loading"
-                  >Submit</Button
                 >
+                  {{ t("login.loginBtn") }}
+                </Button>
               </FormItem>
             </Form>
           </div>
@@ -111,7 +110,6 @@ import {
   Input,
   InputPassword,
   Button,
-  Checkbox,
   Flex,
   Space,
   message,
@@ -123,6 +121,8 @@ import { useRouter } from "vue-router";
 import { LoginBg } from "@/static";
 import { getInputCodeApi, loginApi } from "./api";
 import { getUserPermissionByToken } from "@/router/dynamic";
+import { t } from "@/i18n";
+import { LangPicker } from "@/libs";
 
 const theme = inject("theme");
 

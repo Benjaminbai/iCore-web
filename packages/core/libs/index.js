@@ -7,6 +7,7 @@ import Table from "./table/index.vue";
 import UserInfo from "./userInfo/index.vue";
 import ColorPicker from "./colorPicker/index.vue";
 import UploadImg from "./upload/UploadImg.vue";
+import LangPicker from "./langPicker/index.vue";
 
 export {
   Editor,
@@ -18,4 +19,5 @@ export {
   UserInfo,
   ColorPicker,
   UploadImg,
+  LangPicker,
 };

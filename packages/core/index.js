@@ -23,3 +23,5 @@ export {
   RoleMgt,
   UserMgt,
 } from "@/modules";
+
+export { i18n } from "@/i18n";
