@@ -17,6 +17,7 @@ const componentLoader = (componentName) => {
 
     "@core/home/index": () => import("@/modules/home/index.vue"),
     "@core/theme/index": () => import("@/modules/theme/index.vue"),
+    "@core/h5design/index": () => import("@/modules/h5design/index.vue"),
   };
   return componentMap[componentName];
 };
