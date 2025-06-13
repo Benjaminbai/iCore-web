@@ -8,7 +8,7 @@
     class="put"
   >
     <template #item="{ element, index }">
-      <span class="component-name">{{ element.name }}</span>
+      <component :is="element.component" />
     </template>
   </Draggable>
 </template>

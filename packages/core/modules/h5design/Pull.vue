@@ -3,36 +3,34 @@
     :list="list"
     :group="{ name: 'iqvia', pull: 'clone', put: false }"
     :clone="cloneDog"
-    item-key="id"
+    item-key="name"
     :sort="false"
     class="pull"
     chosenClass="sortable-chosen"
   >
     <template #item="{ element }">
-      <div class="component-item">
-        <ToolOutlined class="component-icon" />
-        <span class="component-name">{{ element.name }}</span>
-      </div>
+      <component :is="element.component" />
     </template>
   </Draggable>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, markRaw } from "vue";
 import Draggable from "vuedraggable";
+import * as NutComponents from "./components";
 
-const list = ref([
-  { id: 1, name: "组件1" },
-  { id: 2, name: "组件2" },
-  { id: 3, name: "组件3" },
-]);
+const arr = [];
+Object.entries(NutComponents).forEach(([name, component]) => {
+  arr.push({ name: component.name, component: markRaw(component) });
+});
+
+const list = ref(arr);
 
 const cloneDog = (props) => {
-  const componentObj = {
+  return {
     ...props,
     id: Math.random(),
   };
-  return componentObj;
 };
 </script>
 

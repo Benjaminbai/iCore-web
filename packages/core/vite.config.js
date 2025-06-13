@@ -27,12 +27,14 @@ export default defineConfig({
         "axios",
         "ant-design-vue",
         "vue",
+        "vue-router",
+        "@ant-design/icons-vue",
+
+        // 待优化
         "@tinymce/tinymce-vue",
         "tinymce",
         "vue-codemirror",
-        "vue-router",
         "vuedraggable",
-        "@ant-design/icons-vue",
         "vue-color",
         "vue-i18n",
       ],
@@ -42,12 +44,14 @@ export default defineConfig({
           axios: "axios",
           "ant-design-vue": "ant-design-vue",
           vue: "vue",
+          "vue-router": "vue-router",
+          "@ant-design/icons-vue": "@ant-design/icons-vue",
+
+          // 待优化
           "@tinymce/tinymce-vue": "@tinymce/tinymce-vue",
           tinymce: "tinymce",
           "vue-codemirror": "vue-codemirror",
-          "vue-router": "vue-router",
           vuedraggable: "vuedraggable",
-          "@ant-design/icons-vue": "@ant-design/icons-vue",
           "vue-color": "vue-color",
           "vue-i18n": "vue-i18n",
         },

@@ -15,7 +15,7 @@
       </CardMeta>
     </Card>
   </Card>
-
+  <NutButton>123</NutButton>
   <FullModal v-model:open="openEdit" title="Basic Modal">
     <Edit />
   </FullModal>
@@ -25,6 +25,8 @@
 import { ref } from "vue";
 import { Card, CardMeta } from "ant-design-vue";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons-vue";
+
+import { NutButton } from "./components";
 
 import { FullModal } from "@/libs";
 import Edit from "./Edit.vue";
