@@ -37,6 +37,7 @@ export default defineConfig({
         "vuedraggable",
         "vue-color",
         "vue-i18n",
+        "vue3-json-viewer",
       ],
       output: {
         assetFileNames: "index.css",
@@ -54,6 +55,7 @@ export default defineConfig({
           vuedraggable: "vuedraggable",
           "vue-color": "vue-color",
           "vue-i18n": "vue-i18n",
+          "vue3-json-viewer": "vue3-json-viewer",
         },
       },
     },

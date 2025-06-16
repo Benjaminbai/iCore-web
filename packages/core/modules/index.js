@@ -8,6 +8,7 @@ import CgReportMgt from "./online/cgReportMgt/index.vue";
 import RoleMgt from "./roleMgt/index.vue";
 import UserMgt from "./userMgt/index.vue";
 import Theme from "./theme/index.vue";
+import Login from "./login/index.vue"
 import H5design from "./h5design/index.vue";
 
 export {
@@ -21,5 +22,6 @@ export {
   RoleMgt,
   UserMgt,
   Theme,
+  Login,
   H5design
 };

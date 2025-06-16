@@ -3,6 +3,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import { Provider } from "@/libs";
 import { sysPageQueryApi } from "@/modules/theme/api";
 import theme from "@/modules/theme/state";
+import { Login } from "@/modules";
 import { syntheticRoutes } from "./dynamic";
 
 export const routes = [
@@ -13,9 +14,7 @@ export const routes = [
       layout: "blank",
     },
     redirect: "/login",
-    children: [
-      { path: "login", component: () => import("@/modules/login/index.vue") },
-    ],
+    children: [{ path: "login", component: Login }],
   },
 ];
 

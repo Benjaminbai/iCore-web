@@ -4,8 +4,8 @@
     :label-col="{ span: 6 }"
     :wrapper-col="{ span: 18 }"
   >
-    <FormItem label="按钮文本">
-      <Input v-model:value="metaData[index]['props'].text" />
+    <FormItem label="图片链接">
+      <Input v-model:value="metaData[index]['props'].src" />
     </FormItem>
   </Form>
 </template>

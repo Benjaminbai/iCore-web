@@ -24,10 +24,11 @@
     "tinymce": "6.6.2",
     "vue": "^3.5.13",
     "vue-codemirror": "^6.1.1",
-    "vue-router": "4",
-    "vuedraggable": "^4.1.0",
     "vue-color": "^3.0.2",
-    "vue-i18n": "^11.1.5"
+    "vue-i18n": "^11.1.5",
+    "vue-router": "4",
+    "vue3-json-viewer": "^2.4.0",
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
