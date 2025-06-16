@@ -9,7 +9,9 @@
     chosenClass="sortable-chosen"
   >
     <template #item="{ element }">
-      <component :is="element.component" />
+      <component :is="element.component" v-bind="element.props">
+        {{ element.name }}
+      </component>
     </template>
   </Draggable>
 </template>
@@ -21,7 +23,12 @@ import * as NutComponents from "./components";
 
 const arr = [];
 Object.entries(NutComponents).forEach(([name, component]) => {
-  arr.push({ name: component.name, component: markRaw(component) });
+  arr.push({
+    name: component.name,
+    component: markRaw(component),
+    props: component._props,
+    panel: markRaw(component.panel),
+  });
 });
 
 const list = ref(arr);
@@ -29,6 +36,7 @@ const list = ref(arr);
 const cloneDog = (props) => {
   return {
     ...props,
+    props: ref(props.props),
     id: Math.random(),
   };
 };

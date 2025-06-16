@@ -1,6 +1,6 @@
 <template>
-  <Row>
-    <Col flex="300px">
+  <Row :gutter="10">
+    <Col flex="250px">
       <Tabs v-model:activeKey="activeKey" tabPosition="left">
         <TabPane :key="1">
           <template #tab>
@@ -21,21 +21,20 @@
         <Put />
       </Card>
     </Col>
-    <Col flex="250px">100px</Col>
+    <Col flex="300px" id="panel-wrapper"></Col>
   </Row>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { provide, ref } from "vue";
 import { Tabs, TabPane, Col, Row, Card } from "ant-design-vue";
-import {
-  AppstoreOutlined,
-  PlayCircleOutlined,
-  ToolOutlined,
-} from "@ant-design/icons-vue";
+import { AppstoreOutlined, PlayCircleOutlined } from "@ant-design/icons-vue";
 
 import Pull from "./Pull.vue";
 import Put from "./Put.vue";
+import metaData from "./state/metaData";
+
+provide("metaData", metaData);
 
 const activeKey = ref(1);
 </script>

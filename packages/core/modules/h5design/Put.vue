@@ -1,6 +1,6 @@
 <template>
   <Draggable
-    :list="list"
+    :list="metaData"
     group="iqvia"
     item-key="id"
     animation="200"
@@ -8,16 +8,23 @@
     class="put"
   >
     <template #item="{ element, index }">
-      <component :is="element.component" />
+      <div>
+        <Teleport to="#panel-wrapper" defer>
+          <component :is="element.panel" :index="index" />
+        </Teleport>
+        <component :is="element.component" v-bind="element.props">
+          {{ element.props.text }}
+        </component>
+      </div>
     </template>
   </Draggable>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { inject } from "vue";
 import Draggable from "vuedraggable";
 
-const list = ref([]);
+const metaData = inject("metaData");
 
 const onChoose = () => {};
 </script>
