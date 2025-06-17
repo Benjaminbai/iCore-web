@@ -28,8 +28,10 @@ let state = reactive({
 
 const recursionMenu = (_menus) => {
   _menus.forEach((menu) => {
-    if (menu.children) {
+    if (menu.children && menu.children.length > 1) {
       recursionMenu(menu.children);
+    } else {
+      delete menu.children;
     }
     menu.key = menu.path;
     menu.icon = "";

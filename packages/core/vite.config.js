@@ -1,9 +1,17 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import path from "path";
+// import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // visualizer({
+    //   open: false,
+    //   gzipSize: true,
+    //   brotliSize: true,
+    // }),
+  ],
   resolve: {
     alias: {
       "@/static": path.resolve(__dirname, "static"),
@@ -12,12 +20,12 @@ export default defineConfig({
       "@/libs": path.resolve(__dirname, "libs"),
       "@/axios": path.resolve(__dirname, "axios"),
       "@/i18n": path.resolve(__dirname, "i18n"),
-    },
+    }
   },
   build: {
     sourcemap: true,
     lib: {
-      entry: "./index.js", // 你的核心入口文件
+      entry: "./index.js",
       name: "Core",
       formats: ["es"],
       fileName: (format) => `core.${format}.js`,
@@ -30,9 +38,18 @@ export default defineConfig({
         "vue-router",
         "@ant-design/icons-vue",
 
-        // 待优化
         "@tinymce/tinymce-vue",
         "tinymce",
+        "tinymce/tinymce",
+        "tinymce/themes/silver",
+        "tinymce/icons/default/icons",
+        "tinymce/models/dom",
+        "tinymce/plugins/fullscreen",
+        "tinymce/plugins/link",
+        "tinymce/plugins/lists",
+        "tinymce/plugins/preview",
+        "tinymce/plugins/image",
+
         "vue-codemirror",
         "vuedraggable",
         "vue-color",
@@ -48,9 +65,18 @@ export default defineConfig({
           "vue-router": "vue-router",
           "@ant-design/icons-vue": "@ant-design/icons-vue",
 
-          // 待优化
           "@tinymce/tinymce-vue": "@tinymce/tinymce-vue",
           tinymce: "tinymce",
+          "tinymce/tinymce": "tinymce/tinymce",
+          "tinymce/themes/silver": "tinymce/themes/silver",
+          "tinymce/icons/default/icons": "tinymce/icons/default/icons",
+          "tinymce/models/dom": "tinymce/models/dom",
+          "tinymce/plugins/fullscreen": "tinymce/plugins/fullscreen",
+          "tinymce/plugins/link": "tinymce/plugins/link",
+          "tinymce/plugins/lists": "tinymce/plugins/lists",
+          "tinymce/plugins/preview": "tinymce/plugins/preview",
+          "tinymce/plugins/image": "tinymce/plugins/image",
+
           "vue-codemirror": "vue-codemirror",
           vuedraggable: "vuedraggable",
           "vue-color": "vue-color",
